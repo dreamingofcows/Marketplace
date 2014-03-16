@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+<title>FIRMCAST marketplace - Main Search </title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- Bootstrap -->
+ <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+ <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 
+<style type='text/css'>
+body {
+background-image: url('img/PortlandDowntown.jpg');
+background-repeat: no-repeat;
+}
+
+p.boxfont{
+font-size: 50px;
+text-align: center;
+color: white;
+padding-top: 25px;
+}
+
+p.industryfont{
+font-size: 50px;
+text-align: right;
+color:#BD0000;
+padding-top: 25px;
+}
+a.box{
+background:url('img/splashindustrybackground.png');
+width:70px; 
+height:70px; 
+display:inline-block;
+}
+
+div.photo{
+float:left;
+padding:4px;
+}
+
+
+  /* Sticky footer styles
+  -------------------------------------------------- */
+
+  html,
+  body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+  }
+
+  /* Wrapper for page content to push down footer */
+  #wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+  }
+
+  /* Set the fixed height of the footer here */
+  #push,
+  #footer {
+	height: 60px;
+  }
+
+  /* Lastly, apply responsive CSS fixes as necessary */
+  @media (max-width: 767px) {
+	#footer {
+	  margin-left: -20px;
+	  margin-right: -20px;
+	  padding-left: 20px;
+	  padding-right: 20px;
+	}
+  }
+
+</style>
+
+
+    <img src="img/marketplaceheader.png">
+
+</head>
+
+
+<body>
+<div id="wrap">
+<div class="container-fluid">
+	<div class="row-fluid" style="padding-top:10%;">
+		<div class="span12">
+			<div class="row-fluid">
+				<div class="span8" style="padding-left:10%;">
+					<!--Accounting-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Accounting')"><p class="boxfont">A</p></a>
+					</div>
+					<!--Law-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Law')"> 
+						<p class="boxfont">L</p></a>
+					</div>
+					<!--Medical-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Medical')"
+						><p class="boxfont">M</p></a>
+					</div>
+					<!--Dental-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Dental')">
+					<p class="boxfont">D</p></a>
+					</div>
+					<!--Engineering-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Engineering')">
+					<p class="boxfont">E</p></a>
+					</div>
+					<!--Building-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Building')">
+					<p class="boxfont">B</p></a>
+					</div>
+					<!--Consulting-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Consulting')">
+						<p class="boxfont">C</p></a>
+					</div>
+					<!--Services-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Services')">
+						<p class="boxfont">S</p></a>
+					</div>
+					<!--Real Estate-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Real Estate')">
+						<p class="boxfont">R</p></a>
+					</div>
+					
+					
+					
+				</div>
+				<div class="span4">
+					<h3>
+						<form class="form-search" method="get" id="s" action="/">
+							<div class="input-append">
+								<input type="text" class="input-large search-query" name="s" placeholder="e.g. Portland, Boston" value="">
+								<br><button type="submit" class="btn">Find Businesses</span></button>
+							</div>
+						</form>
+					</h3>
+				</div>
+			</div>
+			<div class ="row-fluid">
+				<div class="span8" style = "padding-left: 10%; padding-right:4%">
+					<p class="industryfont" id="IndustryText">Find your next opportunity.</p>
+				</div>
+				<div class="span4>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id = "push"></div>
+</div>
+<div id = "footer">
+	<div class= "container">
+		<p style = "text-align:center;" class = "muted credit">
+			Copyright 2014 by Firmcast, All Rights Reserved.
+		</p>
+	</div>
+</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script language = "javascript">
+	function changeContent(text)
+    {
+        document.getElementById("IndustryText").innerHTML=text;
+    }
+	</script>
+</body>
+</html>

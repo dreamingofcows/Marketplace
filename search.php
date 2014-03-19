@@ -43,10 +43,7 @@
 </div>
 	</head>
 	<body>
-<script>
-	var listing_title[];
 	
-</script>		
 
 <div id="wrap">
 	<div class="container-fluid">
@@ -63,7 +60,8 @@
 		
 		<div class="span10">
 			<div class="row-fluid">
-			<div id="googleMap" style="width:100%;height:380px;"></div>
+			
+			<div id="map-canvas" style="width:100%;height:380px;"></div>
 			</div>
 			<div class="row-fluid" style = "width:100%">
 			<!--Insert Listings here-->	
@@ -86,15 +84,49 @@
     	<script src="js/bootstrap.min.js"></script>
     	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDqhGczorRjukfZeeoGA6U37vcI4koJPHk&sensor=false"></script>
     	<script>
-		function initialize()
-		{
-		var mapProp = {
-		  center:new google.maps.LatLng(51.508742,-122.120850),
-		  zoom:5,
-		  mapTypeId:google.maps.MapTypeId.ROADMAP
+    	var map;
+		var markers = [];
+    	function initialize() {
+		  var portland = new google.maps.LatLng(45.5, -122.6);
+		  var mapOptions = {
+		    zoom: 13,
+		    center: portland,
+		    mapTypeId: google.maps.MapTypeId.TERRAIN
 		  };
-		var map=new google.maps.Map(document.getElementById("googleMap")
-		  ,mapProp);
+		  map = new google.maps.Map(document.getElementById('map-canvas'),
+		      mapOptions);
+		
+		}
+		// Add a marker to the map and push to the array.
+		function addMarker(location) {
+		  var marker = new google.maps.Marker({
+		    position: location,
+		    map: map
+		  });
+		  markers.push(marker);
+		}
+		
+		// Sets the map on all markers in the array.
+		function setAllMap(map) {
+		  for (var i = 0; i < markers.length; i++) {
+		    markers[i].setMap(map);
+		  }
+		}
+		
+		// Removes the markers from the map, but keeps them in the array.
+		function clearMarkers() {
+		  setAllMap(null);
+		}
+		
+		// Shows any markers currently in the array.
+		function showMarkers() {
+		  setAllMap(map);
+		}
+		
+		// Deletes all markers in the array by removing references to them.
+		function deleteMarkers() {
+		  clearMarkers();
+		  markers = [];
 		}
 		
 		google.maps.event.addDomListener(window, 'load', initialize);
@@ -109,7 +141,7 @@
 		        var searchString    = $("#search_box").val();
 		        // forming the queryString
 		        var data            = 'search='+ searchString;
-		        
+		        clearMarkers();
 		        // if searchString is not empty
 		        if(searchString) {
 		            // ajax call
@@ -126,10 +158,20 @@
 		                    $("#results").show();
 		                    $("#results").append(html);
 		                    
-		               var x=document.getElementById("numresults");
-		               var numresults = x.innerHTML;
+		               var v=document.getElementById("numresults");
+		               var numresults = v.innerHTML;
 		               
+		               //drop a marker for each one
+		               for(var i=1; i<= numresults;  i+=1){
+		               		var x = document.getElementById("locationx"+i);
+		               		var	lx = x.innerHTML;
+	               			var y = document.getElementById("locationy"+i);
+	               			var	ly = y.innerHTML;
+	               			var latlng = new google.maps.LatLng(lx, ly);
+		               		addMarker(latlng);
+		               }
 		              }
+		              
 		            });    
 		        }
 		        return false;

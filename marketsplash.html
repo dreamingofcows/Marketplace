@@ -21,7 +21,8 @@ padding-top: 25px;
 
 p.industryfont{
 font-size: 50px;
-text-align: right;
+text-align: left;
+line-height: 100%;
 color:#BD0000;
 padding-top: 25px;
 }
@@ -37,6 +38,16 @@ float:left;
 padding:4px;
 }
 
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+    border-color: red;
+    box-shadow: 0 2px 5px rgba(225, 100, 100, 0.075) inset, 0 0 11px rgba(225, 100, 100, 0.6);
+    outline: 0 none;
+}
+textarea, input, input[type], .uneditable-input {   
+    border-color: red;
+    box-shadow: 0 2px 5px rgba(225, 100, 100, 0.075) inset, 0 0 11px rgba(225, 100, 100, 0.6);
+    outline: 0 none;
+}
 
   /* Sticky footer styles
   -------------------------------------------------- */
@@ -86,7 +97,7 @@ padding:4px;
 	<div class="row-fluid" style="padding-top:10%;">
 		<div class="span12">
 			<div class="row-fluid">
-				<div class="span8" style="padding-left:10%;">
+				<div class="span12" style="padding-left:10%;">
 					<!--Accounting-->
 					<div class="photo">
 						<a href="#" class="box" onmouseover="changeContent('Accounting')"><p class="boxfont">A</p></a>
@@ -131,24 +142,28 @@ padding:4px;
 						<a href="#" class="box" onmouseover="changeContent('Real Estate')">
 						<p class="boxfont">R</p></a>
 					</div>
+					<!--Food-->
+					<div class="photo">
+						<a href="#" class="box" onmouseover="changeContent('Food')">
+						<p class="boxfont">F</p></a>
+					</div>
 					
 					
 					
-				</div>
-				<div class="span4">
-					<h3>
-						<form class="form-search" method="get" id="s" action="/">
-							<div class="input-append">
-								<input type="text" class="input-large search-query" name="s" placeholder="e.g. Portland, Boston" value="">
-								<br><button type="submit" class="btn">Find Businesses</span></button>
-							</div>
-						</form>
-					</h3>
 				</div>
 			</div>
 			<div class ="row-fluid">
 				<div class="span8" style = "padding-left: 10%; padding-right:4%">
 					<p class="industryfont" id="IndustryText">Find your next opportunity.</p>
+					<h3>
+						<form class="form-search" method="get" id="s" action="/">
+							<div class="form-horizontal">
+								<input type="text" class="input-large search-query" name="s" placeholder="e.g. Portland, Boston" value="">
+								<button type="submit" class="btn"
+								style = "border-radius(0); -webkit-border-radius:none;">Find Businesses</span></button>
+							</div>
+						</form>
+					</h3>
 				</div>
 				<div class="span4>
 				</div>

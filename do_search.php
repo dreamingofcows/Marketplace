@@ -3,10 +3,30 @@
 //if we got something through $_POST
 if (isset($_POST['search'])) {
 
-	    
+
     $word = $_POST['search'];
     $word = htmlentities($word);
 	$word = '%'.$word.'%';
+	
+	$sort = $_POST['sort'];
+	$sort = htmlentities($sort);
+	$sort = strtolower($sort);
+	
+	$type = $_POST['type'];
+	$type = htmlentities($type);
+	$type = filter_var($type,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_THOUSAND);
+	$type = ','. $type.',';
+	$type = str_replace(',1,', ",'agency',",$type);
+	$type = str_replace(',2,', ",'network',",$type);
+	$type = str_replace(',3,', ",'public',",$type);
+	$type = substr($type,1,-1);
+	
+	
+	$industry = $_POST['industry'];
+	$industry = htmlentities($industry);
+	$industry = filter_var($industry,FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_THOUSAND);
+	
+	
 	// Create connection
 	$db= new mysqli("23.253.10.205:3306","mark","cowandcheese","marketalpha");
 	
@@ -15,13 +35,55 @@ if (isset($_POST['search'])) {
 	  {
 	  echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	  }
+	  
+	  
+	 // decode the sort into the database column_name whitelisted
+	switch ($sort) {
+		case 'name (a to z)':
+			$orderby = 'company_name';
+			$ascdesc = 'asc';
+			break;
+		case 'name (z to a)':
+			$orderby = 'company_name';
+			$ascdesc = 'desc';
+			break;
+		case 'asking price($ to $$$$)':
+			$orderby = 'asking_price';
+			$ascdesc = 'asc';
+			break;
+		case 'asking price($$$$ to $)':
+			$orderby = 'asking_price';
+			$ascdesc = 'desc';
+			break;
+		case 'revenue($ to $$$$)':
+			$orderby = 'revenue';
+			$ascdesc = 'asc';
+			break;
+		case 'revenue($$$$ to $)':
+			$orderby = 'revenue';
+			$ascdesc = 'desc';
+			break;
+		case 'newest listings':
+			$orderby = 'posting_date';
+			$ascdesc = 'desc';
+			break;
+		case 'oldest listings':
+			$orderby = 'posting_date';
+			$ascdesc = 'asc';
+			break;
+	}
+	
 
     // build your search query to the database
-    $sql = $db->prepare("SELECT idx, listing_title, description, asking_price, revenue, locationx, locationy FROM listing_company where company_name like ?");
+    $sql = $db->prepare("SELECT idx, listing_title, description, asking_price, revenue, locationx, locationy 
+    FROM listing_company 
+    where company_name like ? 
+    and industry_idx in (".$industry.")
+    and listing_security in (".$type.") 
+    order by ". $orderby." ".$ascdesc);
 
 	$sql->bind_param('s',$word);
 	
-
     // get results
     $sql->execute();
 

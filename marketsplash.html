@@ -24,7 +24,10 @@ font-size: 50px;
 text-align: left;
 line-height: 100%;
 color:#BD0000;
-padding-top: 25px;
+padding-top: 10px;
+padding-bottom: 10px;
+width:100%;
+background: rgba(255,255,255,.5);
 }
 a.box{
 background:url('img/splashindustrybackground.png');
@@ -153,36 +156,48 @@ textarea, input, input[type], .uneditable-input {
 				</div>
 			</div>
 			<div class ="row-fluid">
-				<div class="span8" style = "padding-left: 10%; padding-right:4%">
+				<div class="span8" style="padding-left:10%; padding-right:4%">
 					<p class="industryfont" id="IndustryText">Find your next opportunity.</p>
 					<h3>
-						<form class="form-search" method="get" id="s" action="/">
+						<form class="form-search" id="s" action="search.php">
 							<div class="form-horizontal">
 								<input type="text" class="input-large search-query" name="s" placeholder="e.g. Portland, Boston" value="">
 								<button type="submit" class="btn"
-								style = "border-radius(0); -webkit-border-radius:none;">Find Businesses</span></button>
+								style = "border-radius(0); -webkit-border-radius:none;">Find Businesses</button>
 							</div>
 						</form>
 					</h3>
 				</div>
-				<div class="span4>
+				<div class="span4">
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div id = "push"></div>
+<div id="push"></div>
 </div>
 <div id = "footer">
 	<div class= "container">
-		<p style = "text-align:center;" class = "muted credit">
+		<p style = "text-align:center;" class="muted credit">
 			Copyright 2014 by Firmcast, All Rights Reserved.
 		</p>
 	</div>
 </div>
 	<script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.backstretch.js"></script>
+	<script>
+	    $.backstretch([
+	      "img/PortlandDowntown.jpg",
+	      "img/Willamette_River_Portland_Oregon.jpg",
+	      "img/3480415920_335cc7818c_o.jpg",
+	      "img/Portland-Head-Light-House.jpg"	//NOTE: The last element has NO comma
+	      ], {
+	        fade: 750,		//Speed of Fade
+	        duration: 4000 	//Time of image display
+	    });
+	</script>
 	<script language = "javascript">
 	function changeContent(text)
     {
